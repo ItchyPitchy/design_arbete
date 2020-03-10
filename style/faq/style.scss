@@ -1,0 +1,178 @@
+@import "../variables/variables";
+@import "../base/_style.scss";
+
+.hero {
+    &__image {
+        background-image: linear-gradient(to top, #240202ab, #c15555b4), url("../../images/page-2/hero-2.jpg");
+    }
+}
+
+.articles-section {
+    background-color: #f1f1f1;
+    padding: 100px 0 0 0;
+    h2 {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 800;
+        color: $general-blue;
+        margin: 0 0 80px 0;
+    }
+    .outer-grid {
+        display: grid;
+        grid-template: repeat(4, auto) / 1fr;
+        gap: 2em;
+        &__item {
+            box-shadow: 0 2px 5px 0 rgba(160, 160, 160, 0.5);
+            background-color: white;
+            padding: 3em;
+            h3 {
+                font-size: $general-article-heading-fontSize-small;
+                color: $general-red;
+                font-weight: 500;
+                margin: 0 0 25px 0;
+            }
+            p {
+                font-size: $general-article-fontSize-small;
+                color: $general-black;
+                font-weight: 500;
+                line-height: 22px;
+                margin: 15px 0;
+            }
+            ul {
+                font-weight: bold;
+            }
+        }
+        .inner-grid {
+            display: grid;
+            grid-template: minmax(300px, auto) 1fr / 1fr;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            padding: 0;
+            &__text-wrapper {
+                place-self: center;
+                padding: 3em;
+            }
+            &__image-wrapper {
+                width: 100%;
+                height: 100%;
+                order: -1;
+                img {
+                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            &__animation-wrapper {
+                background-image: radial-gradient(circle at 50% 39%, #072142, #00132c 101%);
+                width: 100%;
+                height: 100%;
+                display: grid;
+                grid-template: 1fr / 1fr;
+                place-items: center;
+                min-width: 300px;
+                min-height: 300px;
+                .sun {
+                    width: 40px;
+                    height: 40px;
+                    grid-row: 1;
+                    grid-column: 1;
+                }
+                .orb {
+                    grid-row: 1;
+                    grid-column: 1;
+                    animation: move-planet linear infinite;
+                }
+                .planet {
+                    position: absolute;
+                    top: -10px;
+                    left: 50%;
+                    animation: rotate-reverse linear infinite;
+                }
+                .earth {
+                    &.orb {
+                        width: 100px;
+                        height: 100px;
+                        animation-duration: 7s;
+                    }
+                    .planet {
+                        width: 20px;
+                        height: 20px;
+                        animation-duration: 7s;
+                    }
+                }
+                .mars {
+                    &.orb {
+                        width: 250px;
+                        height: 250px;
+                        animation-duration: 10s;
+                    }
+                    .planet {
+                        width: 30px;
+                        height: 30px;
+                        animation-duration: 10s;
+                    }
+                }
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            @keyframes move-planet {
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            @keyframes rotate-reverse {
+                100% {
+                    transform: rotate(-360deg);
+                }
+            }
+        }
+    }
+    @media (min-width: 768px) {
+        .outer-grid {
+            .box2 {
+                grid-template: minmax(350px, auto) / 1fr 1fr;
+                &__image-wrapper {
+                    order: 2;
+                }
+            }
+            .box4 {
+                grid-template: minmax(350px, auto) / minmax(350px, 2fr) 5fr;
+                &__animation-wrapper {
+                    order: -1;
+                }
+            }
+        }
+    }
+    @media (min-width: 1200px) {
+        .outer-grid {
+            grid-template: auto 1fr auto / 2fr 3fr;
+            h3 {
+                font-size: $general-article-heading-fontSize-large;
+            }
+            p {
+                font-size: $general-article-fontSize-large;
+            }
+            .box1 {
+                grid-area: 1 / 1 / span 2 / span 1;
+            }
+            .box2 {
+                grid-template: auto / 1fr 1fr;
+                &__image-wrapper {
+                    order: 1;
+                }
+            }
+            .box3 {
+                grid-area: 1 / 2 / span 1 / span 1;
+            }
+            .box4 {
+                grid-area: 3 / 1 / span 1 / span 2;
+                &__animation-wrapper {
+                    order: -1;
+                }
+            }
+        }
+    }
+}
